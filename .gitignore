@@ -3,4 +3,5 @@
 *.pyc
 *.jar
 *.war
+env/
 
