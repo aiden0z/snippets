@@ -1,4 +1,4 @@
-import java.util.*;
+package chapter5;
 
 class A {}
 
@@ -8,15 +8,13 @@ class A {}
 public class VarArgs{
     static void printArray(Object[] args) {
         for(Object obj: args) {
-            System.out.print(obj + " ");
+            System.out.println(obj + " ");
         }
-        System.out.println();
     }
 
     static void printArgs(Object... args) {
         for(Object obj: args)
-            System.out.print(obj + " ");
-        System.out.println();
+            System.out.println(obj + " ");
     }
 
     public static void main(String[] args) {
