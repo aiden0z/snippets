@@ -28,6 +28,7 @@ public class SweetShop {
         new Candy();
         System.out.println("after creating Candy ");
         try {
+            // 将加载 Gum 类,生成 Gum 的类对象,这个过程中会执行 static 代码
             Class.forName("chapter14.Gum");
             // Class.forName("Gum");
         } catch (ClassNotFoundException e) {
