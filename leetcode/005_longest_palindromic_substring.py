@@ -15,6 +15,8 @@ Example:
 Input: "cbbd"
 
 Output: "bb"
+
+Refer: https://leetcode.com/problems/longest-palindromic-substring/
 """
 
 def is_palindrome(s):
