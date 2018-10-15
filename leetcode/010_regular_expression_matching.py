@@ -1,5 +1,3 @@
-# -*- coding:utf-8 -*-
-
 """
 Implement regular expression matching with support for '.' and '*'.
 
@@ -63,7 +61,8 @@ class SolutionB(object):
 
     P[i][j] = P[i - 1][j - 1], if p[j - 1] != '*' && (s[i - 1] == p[j - 1] || p[j - 1] == '.');
     P[i][j] = P[i][j - 2], if p[j - 1] == '*' and the pattern repeats for 0 times;
-    P[i][j] = P[i - 1][j] && (s[i - 1] == p[j - 2] || p[j - 2] == '.'), if p[j - 1] == '*' and the pattern repeats for at least 1 times.
+    P[i][j] = P[i - 1][j] && (s[i - 1] == p[j - 2] || p[j - 2] == '.'), if p[j - 1] == '*' 
+    and the pattern repeats for at least 1 times.
 
     Referer: http://xiaohuiliucuriosity.blogspot.com/2014/12/regular-expression-matching.html
 

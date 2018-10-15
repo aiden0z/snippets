@@ -1,5 +1,3 @@
-# -*- coding:utf-8 -*-
-
 """
 Given an integer, convert it to roman numberal.
 

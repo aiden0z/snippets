@@ -6,4 +6,4 @@
 env/
 .idea
 *.iml
-
+.vscode

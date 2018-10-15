@@ -1,7 +1,3 @@
-# -*- coding:utf-8 -*-
-
-import re
-
 """
 Implement a atoi to convert a string to integer.
 
@@ -14,6 +10,8 @@ You are reponseible to gather all the input requirements up front.
 
 Refer: https://leetcode.com/problems/string-to-integer-atoi/description/
 """
+
+import re
 
 
 class Solution(object):

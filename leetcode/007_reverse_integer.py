@@ -1,5 +1,3 @@
-# -*- coding:utf-8 -*-
-
 """
 Reverse digits of an iteger.
 Example1: x = 123, return 321
