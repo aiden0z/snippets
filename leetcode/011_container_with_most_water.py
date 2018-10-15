@@ -37,7 +37,6 @@ if __name__ == '__main__':
     testcases = [
         ([4, 2, 7, 6], 12)
     ]
-
     s = Solution()
     for case in testcases:
         assert s.maxArea(case[0]) == case[1]
