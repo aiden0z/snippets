@@ -1,4 +1,4 @@
-"""
+"""Zigzag Conversion
 The string "PAYPALISHIRING" is written in a zigzag pattern on a given number
 of rows like this: (you may want to display this pattern in a fixed font for
 better legibility):
@@ -16,7 +16,7 @@ of rows:
 
 `convert("PAYPALISHIRING", 3)` should return "PAHNAPLSIIGYIR"
 
-Refer: https://leetcode.com/problems/zigzag-conversion/
+Refer https://leetcode.com/problems/zigzag-conversion/
 """
 
 class Solution(object):

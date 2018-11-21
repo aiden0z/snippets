@@ -1,4 +1,4 @@
-"""
+"""String to Integer
 Implement a atoi to convert a string to integer.
 
 Hint: Carefully consider all possible input cases. If you want a challenge,
@@ -8,7 +8,7 @@ Notes: It is intended for this problem to be specified vaguely (ie, no given inp
 You are reponseible to gather all the input requirements up front.
 
 
-Refer: https://leetcode.com/problems/string-to-integer-atoi/description/
+Refer https://leetcode.com/problems/string-to-integer-atoi/description/
 """
 
 import re

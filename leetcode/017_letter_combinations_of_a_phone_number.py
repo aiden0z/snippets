@@ -1,4 +1,4 @@
-"""
+"""Letter Combinations of a Phone Number
 Given a string containing digits from 2-9 inclusive, return all possible letter combinations that 
 the number could represent.
 
@@ -24,7 +24,7 @@ Although the above answer is in lexicographical order, your answer could be in a
 
 Seen this question in a real interview before?  
 
-Reference https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/
+Refer https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/
 """
 
 class Solution:

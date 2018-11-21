@@ -1,7 +1,7 @@
-"""
+"""Palindrome Number
 Determine whether an integer is a palindrome. Do this without extra space.
 
-Refer: https://leetcode.com/problems/palindrome-number/description/
+Refer https://leetcode.com/problems/palindrome-number/description/
 """
 
 

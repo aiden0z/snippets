@@ -1,4 +1,4 @@
-"""
+"""Regular Expression Matching
 Implement regular expression matching with support for '.' and '*'.
 
 '.' Matches any single character.
@@ -18,7 +18,7 @@ isMatch("aa", ".*") ? true
 isMatch("ab", ".*") ? true
 isMatch("aab", "c*a*b") ? true
 
-Refer: https://leetcode.com/problems/regular-expression-matching/description/
+Refer https://leetcode.com/problems/regular-expression-matching/description/
 """
 
 class Solution(object):
