@@ -20,14 +20,15 @@ Clarification:
 What should we return when needle is an empty string? This is a greate question to ask during an
 interview.
 
-For the purpose of this problem, we will return 0 when dle is an empty string. This is consistent 
+For the purpose of this problem, we will return 0 when dle is an empty string. This is consistent
 to C's strStr() and Java's indexOf().
 
 Reference https://leetcode.com/problems/implement-strstr/
 """
 
+
 class Solution:
-    
+
     def strStr(self, haystack, needle):
         """
         :type haystack: str
@@ -43,7 +44,7 @@ class Solution:
         i, n = 0, len(haystack)
         while i < n:
             if i + len(needle) > n:
-                return  -1
+                return -1
 
             if haystack[i] != needle[0]:
                 i += 1
@@ -78,4 +79,3 @@ if __name__ == '__main__':
         for s in solutions:
             print(case, s().strStr(case[0], case[1]))
             assert s().strStr(case[0], case[1]) == case[2]
-

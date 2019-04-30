@@ -52,18 +52,14 @@ class Solution:
         while nums[j] <= nums[i - 1]:
             j -= 1
         # swap
-        nums[i-1], nums[j] = nums[j], nums[i-1]
+        nums[i - 1], nums[j] = nums[j], nums[i - 1]
 
         # reverse suffix
-        nums[i:] = nums[len(nums)-1:i-1:-1]
+        nums[i:] = nums[len(nums) - 1:i - 1:-1]
 
-        
+
 if __name__ == '__main__':
-    cases = [
-        ([1, 2, 3], [1, 3, 2]),
-        ([3, 2, 1], [1, 2, 3]),
-        ([1, 1, 5], [1, 5, 1]) 
-    ]
+    cases = [([1, 2, 3], [1, 3, 2]), ([3, 2, 1], [1, 2, 3]), ([1, 1, 5], [1, 5, 1])]
 
     solutions = [Solution]
 

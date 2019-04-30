@@ -39,12 +39,14 @@ def iter_linked_list(head):
 
 
 class ListNode:
+
     def __init__(self, x):
         self.val = x
         self.next = None
 
 
 class Solution:
+
     def swapPairs(self, head):
         """
         :type head: ListNode
@@ -69,15 +71,14 @@ class Solution:
             current = current.next
         return new
 
+
 if __name__ == '__main__':
-    cases = [
-        generate_linked_list(8, 1),
-        generate_linked_list(2, 1)
-    ]
+    cases = [generate_linked_list(8, 1), generate_linked_list(2, 1)]
 
     solutions = [Solution]
     for case in cases:
         print('Input:', [node.val for node in iter_linked_list(case)])
         for solution in solutions:
-            l = solution().swapPairs(copy.deepcopy(case))
-            print('{}: {}'.format(solution.__name__, [node.val for node in iter_linked_list(l)]))
+            result = solution().swapPairs(copy.deepcopy(case))
+            print('{}: {}'.format(solution.__name__,
+                                  [node.val for node in iter_linked_list(result)]))

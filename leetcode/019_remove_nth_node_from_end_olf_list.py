@@ -15,16 +15,18 @@ Given n will always be valid.
 Refer https://leetcode.com/problems/remove-nth-node-from-end-of-list
 """
 
+
 def generate_linked_list(n):
     assert n > 1
     head = ListNode(n)
     node = head
-    for i in range(n-1, 0, -1):
+    for i in range(n - 1, 0, -1):
         next_node = ListNode(i)
         node.next = next_node
         next_node.prev = node
         node = node.next
     return head
+
 
 def check_exist(head, val):
     while True:
@@ -36,7 +38,9 @@ def check_exist(head, val):
             break
     return False
 
+
 class ListNode:
+
     def __init__(self, x):
         self.val = x
         self.next = None
@@ -77,11 +81,8 @@ class Solution:
 
 
 if __name__ == '__main__':
-    cases = [
-        (generate_linked_list(5), 5),
-        (generate_linked_list(5), 6 ),
-        (generate_linked_list(5), 3)
-    ]
+    cases = [(generate_linked_list(5), 5), (generate_linked_list(5), 6),
+             (generate_linked_list(5), 3)]
     solutions = [Solution]
 
     for case in cases:

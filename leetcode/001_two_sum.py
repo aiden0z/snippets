@@ -62,6 +62,7 @@ class SolutionHashOneLoop(object):
     Time Complexity: O(n)
     Space Complexity: O(n)
     """
+
     def twoSum(self, nums, target):
         hash = {}
         for i, v in enumerate(nums):
@@ -72,11 +73,8 @@ class SolutionHashOneLoop(object):
 
 
 if __name__ == "__main__":
-    cases = [
-        (([-1, 2, -7, 0], -8), [0, 2]),
-        (([2, 7, 11, 15], 9), [0, 1]),
-        (([2, 7, -15, 4], -11), [2, 3])
-    ]
+    cases = [(([-1, 2, -7, 0], -8), [0, 2]), (([2, 7, 11, 15], 9), [0, 1]),
+             (([2, 7, -15, 4], -11), [2, 3])]
 
     solutions = (Solution(), SolutionHash(), SolutionHashOneLoop())
     for s in solutions:

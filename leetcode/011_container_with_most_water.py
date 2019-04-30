@@ -11,6 +11,7 @@ Refer https://leetcode.com/problems/container-with-most-water/
 
 
 class Solution(object):
+
     def maxArea(self, height):
         """
         :type height: List[int]
@@ -24,7 +25,7 @@ class Solution(object):
         j = len(height) - 1
 
         while i < j:
-            max_area = max(max_area, min(height[i], height[j])*(j-i))
+            max_area = max(max_area, min(height[i], height[j]) * (j - i))
             if height[i] < height[j]:
                 i += 1
             else:
@@ -34,9 +35,7 @@ class Solution(object):
 
 
 if __name__ == '__main__':
-    testcases = [
-        ([4, 2, 7, 6], 12)
-    ]
+    testcases = [([4, 2, 7, 6], 12)]
     s = Solution()
     for case in testcases:
         assert s.maxArea(case[0]) == case[1]

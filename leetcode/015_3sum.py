@@ -21,6 +21,7 @@ Refer https://leetcode.com/problems/3sum
 
 
 class Solution:
+
     def threeSum(self, nums):
         """ based on binary search
         :type nums: List[int]
@@ -53,6 +54,7 @@ class Solution:
 
 
 class SolutionB:
+
     @staticmethod
     def get_id(nums):
         return '{0}{1}{2}'.format(*sorted(nums))
@@ -82,9 +84,8 @@ class SolutionB:
 
 
 if __name__ == '__main__':
-    cases = [([-1, 0, 1, 2, -1, -4], [[-1, 0, 1], [-1, -1, 2]], 2),
-             ([0, 0], [], 0), ([0], [], 0), ([3, -2, 1, 0], [], 0),
-             ([1, 2, -2, -1], [], 0), ([0, 0, 0], [[0, 0, 0]], 1)]
+    cases = [([-1, 0, 1, 2, -1, -4], [[-1, 0, 1], [-1, -1, 2]], 2), ([0, 0], [], 0), ([0], [], 0),
+             ([3, -2, 1, 0], [], 0), ([1, 2, -2, -1], [], 0), ([0, 0, 0], [[0, 0, 0]], 1)]
     s = Solution()
     for case in cases:
         result = s.threeSum(case[0])

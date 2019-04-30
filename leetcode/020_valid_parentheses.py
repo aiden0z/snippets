@@ -40,12 +40,13 @@ Refer https://leetcode.com/problems/valid-parentheses
 
 
 class Solution:
+
     def isValid(self, s):
         """
         :type s: str
         :rtype: bool
         """
-        if len(s) % 2  != 0:
+        if len(s) % 2 != 0:
             return False
 
         stack = []
@@ -65,7 +66,7 @@ class Solution:
         if len(stack) > 0:
             return False
         return True
-        
+
 
 if __name__ == '__main__':
     cases = [
@@ -81,4 +82,3 @@ if __name__ == '__main__':
         for solution in solutions:
             print(case[0], case[1], solution().isValid(case[0]))
             assert solution().isValid(case[0]) == case[1]
-

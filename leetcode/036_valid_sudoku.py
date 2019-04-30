@@ -40,8 +40,8 @@ Example 2:
     ]
 
     Output: false
-    Explanation: Same as Example 1, except with the 5 in the top left corner being 
-    modified to 8. Since there are two 8's in the top left 3x3 sub-box, it is invalid   
+    Explanation: Same as Example 1, except with the 5 in the top left corner being
+    modified to 8. Since there are two 8's in the top left 3x3 sub-box, it is invalid
 
 Note:
     A Sudoku board (partially filled) could be valid but is not necessarily solvable.
@@ -50,7 +50,9 @@ Note:
     The given board size is always 9x9.
 """
 
+
 class Solution:
+
     @staticmethod
     def notInRow(matrix, row):
         st = set()
@@ -76,7 +78,7 @@ class Solution:
         st = set()
         for i in range(3):
             for j in range(3):
-                char = matrix[i+startRow][j+startCol]
+                char = matrix[i + startRow][j + startCol]
                 if char in st:
                     return False
                 if char != '.':
@@ -90,11 +92,14 @@ class Solution:
         """
         for i in range(9):
             for j in range(9):
-                if not (self.notInRow(board, i) and self.notInCol(board, j) and self.notInBox(board, i - i % 3, j - j % 3)):
+                if not (self.notInRow(board, i) and self.notInCol(board, j)
+                        and self.notInBox(board, i - i % 3, j - j % 3)):
                     return False
         return True
 
+
 class SolutionSimple:
+
     def isValidSudoku(self, board):
         """
         :type board: List[List[str]]
@@ -102,56 +107,48 @@ class SolutionSimple:
         """
         big = set()
 
-        for i in range(0,9):
-            for j in range(0,9):
-                if board[i][j]!='.':
+        for i in range(0, 9):
+            for j in range(0, 9):
+                if board[i][j] != '.':
                     cur = board[i][j]
-                    if (i, cur) in big or (cur, j) in big or (i//3, j//3, cur) in big:
+                    if (i, cur) in big or (cur, j) in big or (i // 3, j // 3, cur) in big:
                         return False
                     big.add((i, cur))
                     big.add((cur, j))
-                    big.add((i//3, j//3, cur))
+                    big.add((i // 3, j // 3, cur))
         return True
 
+
 if __name__ == '__main__':
-    cases = [
-        ([
-      ["5","3",".",".","7",".",".",".","."],
-      ["6",".",".","1","9","5",".",".","."],
-      [".","9","8",".",".",".",".","6","."],
-      ["8",".",".",".","6",".",".",".","3"],
-      ["4",".",".","8",".","3",".",".","1"],
-      ["7",".",".",".","2",".",".",".","6"],
-      [".","6",".",".",".",".","2","8","."],
-      [".",".",".","4","1","9",".",".","5"],
-      [".",".",".",".","8",".",".","7","9"]
-    ], True),
-    ([
-      ["8","3",".",".","7",".",".",".","."],
-      ["6",".",".","1","9","5",".",".","."],
-      [".","9","8",".",".",".",".","6","."],
-      ["8",".",".",".","6",".",".",".","3"],
-      ["4",".",".","8",".","3",".",".","1"],
-      ["7",".",".",".","2",".",".",".","6"],
-      [".","6",".",".",".",".","2","8","."],
-      [".",".",".","4","1","9",".",".","5"],
-      [".",".",".",".","8",".",".","7","9"]
-    ], False),
-    ([
-      [".",".","4",".",".",".","6","3","."],
-      [".",".",".",".",".",".",".",".","."],
-      ["5",".",".",".",".",".",".","9","."],
-      [".",".",".","5","6",".",".",".","."],
-      ["4",".","3",".",".",".",".",".","1"],
-      [".",".",".","7",".",".",".",".","."],
-      [".",".",".","5",".",".",".",".","."],
-      [".",".",".",".",".",".",".",".","."],
-      [".",".",".",".",".",".",".",".","."]
-    ], False)
-    ]
+    cases = [([["5", "3", ".", ".", "7", ".", ".", ".", "."],
+               ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+               [".", "9", "8", ".", ".", ".", ".", "6", "."],
+               ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+               ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+               ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+               [".", "6", ".", ".", ".", ".", "2", "8", "."],
+               [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+               [".", ".", ".", ".", "8", ".", ".", "7", "9"]], True),
+             ([["8", "3", ".", ".", "7", ".", ".", ".", "."],
+               ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+               [".", "9", "8", ".", ".", ".", ".", "6", "."],
+               ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+               ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+               ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+               [".", "6", ".", ".", ".", ".", "2", "8", "."],
+               [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+               [".", ".", ".", ".", "8", ".", ".", "7", "9"]], False),
+             ([[".", ".", "4", ".", ".", ".", "6", "3", "."],
+               [".", ".", ".", ".", ".", ".", ".", ".", "."],
+               ["5", ".", ".", ".", ".", ".", ".", "9", "."],
+               [".", ".", ".", "5", "6", ".", ".", ".", "."],
+               ["4", ".", "3", ".", ".", ".", ".", ".", "1"],
+               [".", ".", ".", "7", ".", ".", ".", ".", "."],
+               [".", ".", ".", "5", ".", ".", ".", ".", "."],
+               [".", ".", ".", ".", ".", ".", ".", ".", "."],
+               [".", ".", ".", ".", ".", ".", ".", ".", "."]], False)]
 
     solutions = [Solution, SolutionSimple]
     for case in cases:
         for S in solutions:
             assert S().isValidSudoku(case[0]) == case[1]
- 

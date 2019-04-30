@@ -19,7 +19,9 @@ of rows:
 Refer https://leetcode.com/problems/zigzag-conversion/
 """
 
+
 class Solution(object):
+
     def convert(self, s, numRows):
         """
         :type s: str
@@ -33,7 +35,7 @@ class Solution(object):
         if length <= numRows:
             return s
 
-        upper = int(length/base) + 2
+        upper = int(length / base) + 2
         if length % base == 0:
             upper -= 1
 
@@ -43,11 +45,11 @@ class Solution(object):
 
         for x in range(1, upper):
             for i in range(0, base):
-                index = (x-1) * base + i
+                index = (x - 1) * base + i
                 if index >= length:
                     break
                 if i + 1 > numRows:
-                    d[2*numRows - i - 2].append(s[index])
+                    d[2 * numRows - i - 2].append(s[index])
                 else:
                     d[i].append(s[index])
             else:
@@ -58,7 +60,9 @@ class Solution(object):
             result.extend(d[x])
         return ''.join(result)
 
+
 class SolutionB(object):
+
     def convert(self, s, numRows):
         """
         :type s: str
@@ -73,25 +77,26 @@ class SolutionB(object):
         if length <= numRows:
             return s
 
-        upper = int(length/base) + 2
+        upper = int(length / base) + 2
         if length % base == 0:
             upper -= 1
 
         result = []
         for i in range(0, numRows):
             for x in range(1, upper):
-                index = (x-1) * base + i
+                index = (x - 1) * base + i
                 if index < length:
-                    result.append(s[(x-1) * base + i])
+                    result.append(s[(x - 1) * base + i])
 
                 if i != 0 and i != numRows - 1:
-                    index = (x-1) * base + 2 * numRows -i - 2
+                    index = (x - 1) * base + 2 * numRows - i - 2
                     if index < length:
                         result.append(s[index])
         return ''.join(result)
 
 
 class SolutionC(object):
+
     def convert(self, s, numRows):
 
         if numRows == 1 or numRows >= len(s):

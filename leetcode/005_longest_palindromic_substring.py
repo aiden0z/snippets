@@ -1,5 +1,6 @@
 """Longest Palindromic Substring
-Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+Given a string s, find the longest palindromic substring in s.
+You may assume that the maximum length of s is 1000.
 
 Example:
 
@@ -17,6 +18,7 @@ Output: "bb"
 Refer https://leetcode.com/problems/longest-palindromic-substring/
 """
 
+
 def is_palindrome(s):
     """ 判定是否是回文
     """
@@ -24,17 +26,18 @@ def is_palindrome(s):
     if length < 2:
         return False
     mid = length >> 1
-    l = mid - 1
-    r = mid + 1 if length & 1 else mid
-    while l >= 0   and r < length:
-        if s[l] != s[r]:
+    left = mid - 1
+    right = mid + 1 if length & 1 else mid
+    while left >= 0 and right < length:
+        if s[left] != s[right]:
             return False
-        l -= 1
-        r += 1
+        left -= 1
+        right += 1
     return True
 
 
 class Solution(object):
+
     def longestPalindrome(self, s):
         """
         :type s: str
@@ -54,7 +57,7 @@ class Solution(object):
         while i < length:
             j = i + 1
             while j <= length:
-                if is_palindrome(s[i:j]) and j-i >= max_len:
+                if is_palindrome(s[i:j]) and j - i >= max_len:
                     max_len = j - i
                     max_sub = s[i:j]
                 j += 1
@@ -63,6 +66,7 @@ class Solution(object):
 
 
 class SolutionB(object):
+
     def longestPalindrome(self, s):
         """
         :type s: str
@@ -104,7 +108,7 @@ class SolutionB(object):
                     max_len = high - low + 1
                 low -= 1
                 high += 1
-        return s[start:start+max_len]
+        return s[start:start + max_len]
 
 
 class SolutionC(object):
@@ -117,7 +121,8 @@ class SolutionC(object):
 
 class SolutionD(object):
     """ 最长回文子串长度
-    Let X[0..n-1] be the input sequence of length n and L(0, n-1) be the length of the longest palindromic subsequence of X[0..n-1].
+    Let X[0..n-1] be the input sequence of length n and L(0, n-1) be the
+    length of the longest palindromic subsequence of X[0..n-1].
 
     If last and first characters of X are same, then L(0, n-1) = L(1, n-2) + 2.
     Else L(0, n-1) = MAX (L(1, n-1), L(0, n-2)).
@@ -137,15 +142,17 @@ class SolutionD(object):
     // characters are same
     Else L(i, j) =  L(i + 1, j - 1) + 2
     """
+
     def lengthOfLongestSubstring(self, s):
+
         def lps(s, i, j):
             if i == j:
                 return 1
             if s[i] == s[j] and i + 1 == j:
                 return 2
             if s[i] == s[j]:
-                return lps(s, i+1, j-1) + 2
-            return max(lps(s, i, j-1), lps(s, i+1, j))
+                return lps(s, i + 1, j - 1) + 2
+            return max(lps(s, i, j - 1), lps(s, i + 1, j))
 
 
 if __name__ == '__main__':

@@ -18,7 +18,7 @@ Excample 1:
 Example 2:
 
     Given nums = [0, 1, 2, 2, 3, 0, 4, 2], val = 2
-    Your function should return length = 5, with the first five of nums 
+    Your function should return length = 5, with the first five of nums
     containing 0, 1, 3, 0 and 4.
 
     Note that the order of those five elements can be arbitrary.
@@ -29,6 +29,7 @@ import copy
 
 
 class Solution:
+
     def removeElement(self, nums, val):
         """
         :type nums: List[int]
@@ -49,6 +50,7 @@ class Solution:
 
 
 class SolutionBasedOnPop:
+
     def removeElement(self, nums, val):
         """
         :type nums: List[int]
@@ -66,8 +68,8 @@ class SolutionBasedOnPop:
 
 
 if __name__ == '__main__':
-    cases = [([], 1, 0), ([3, 3], 3, 0), ([3, 3, 3], 3, 0), ([3], 3, 0),
-             ([3, 2, 2, 3], 3, 2), ([0, 1, 2, 2, 3, 0, 4], 2, 5)]
+    cases = [([], 1, 0), ([3, 3], 3, 0), ([3, 3, 3], 3, 0), ([3], 3, 0), ([3, 2, 2, 3], 3, 2),
+             ([0, 1, 2, 2, 3, 0, 4], 2, 5)]
     solutions = [Solution, SolutionBasedOnPop]
     for case in cases:
         for s in solutions:

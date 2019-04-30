@@ -35,6 +35,7 @@ def iter_linked_list(head):
 
 
 class ListNode:
+
     def __init__(self, x):
         self.val = x
         self.next = None
@@ -44,10 +45,12 @@ class Solution:
     """迭代递归解法"""
 
     def mergeTwoLists(self, l1, l2):
-        if(l1 == None): return l2
-        if(l2 == None): return l1
-        
-        if(l1.val < l2.val):
+        if l1 is None:
+            return l2
+        if l2 is None:
+            return l1
+
+        if l1.val < l2.val:
             l1.next = self.mergeTwoLists(l1.next, l2)
             return l1
         else:
@@ -61,7 +64,7 @@ class Solution:
         """
 
         if len(lists) == 0:
-            return 
+            return
 
         head = lists[0]
         for i in range(1, len(lists)):
@@ -73,10 +76,12 @@ class SolutionMergeRecursive:
     """归并递归解法"""
 
     def mergeTwoLists(self, l1, l2):
-        if(l1 == None): return l2
-        if(l2 == None): return l1
-        
-        if(l1.val < l2.val):
+        if l1 is None:
+            return l2
+        if l2 is None:
+            return l1
+
+        if (l1.val < l2.val):
             l1.next = self.mergeTwoLists(l1.next, l2)
             return l1
         else:
@@ -88,7 +93,7 @@ class SolutionMergeRecursive:
         :type lists: List[ListNode]
         :rtype: ListNode
         """
-        if len(lists) ==0:
+        if len(lists) == 0:
             return
         if len(lists) == 1:
             return lists[0]
@@ -100,12 +105,13 @@ class SolutionMergeRecursive:
 
 class SolutionSimple:
     """取值排序再拼接"""
+
     @staticmethod
     def addToList(lists):
         values = []
         for node in lists:
             current = node
-            while current != None:
+            while current is not None:
                 values.append(current.val)
                 current = current.next
         return values
@@ -126,22 +132,27 @@ class SolutionSimple:
                 current = head
             else:
                 current.next = ListNode(i)
-                current=current.next
+                current = current.next
         return head
 
 
 if __name__ == '__main__':
     cases = [
-        [generate_linked_list(3, 2), generate_linked_list(6, 2), generate_linked_list(6, 3)],
-        [generate_linked_list(7, 2), generate_linked_list(8, 2), generate_linked_list(6, 3)],
+        [generate_linked_list(3, 2),
+         generate_linked_list(6, 2),
+         generate_linked_list(6, 3)],
+        [generate_linked_list(7, 2),
+         generate_linked_list(8, 2),
+         generate_linked_list(6, 3)],
     ]
 
-    solutions = [Solution, SolutionMergeRecursive, SolutionSimple ]
+    solutions = [Solution, SolutionMergeRecursive, SolutionSimple]
     for case in cases:
         inputs = []
         for node in case:
             inputs.append('{}'.format([n.val for n in iter_linked_list(node)]))
         print('Input:', ', '.join(inputs))
         for solution in solutions:
-            l = solution().mergeKLists(copy.deepcopy(case))
-            print('{}: {}'.format(solution.__name__, [node.val for node in iter_linked_list(l)]))
+            result = solution().mergeKLists(copy.deepcopy(case))
+            print('{}: {}'.format(solution.__name__,
+                                  [node.val for node in iter_linked_list(result)]))

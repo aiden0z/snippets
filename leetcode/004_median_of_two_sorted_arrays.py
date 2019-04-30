@@ -17,7 +17,9 @@ The median is (2 + 3)/2 = 2.5
 Refer https://leetcode.com/problems/median-of-two-sorted-arrays/
 """
 
+
 class Solution(object):
+
     def findMedianSortedArrays(self, nums1, nums2):
         """
         :type nums1: List[int]
@@ -28,12 +30,12 @@ class Solution(object):
         """
         nums1_len = len(nums1)
         nums2_len = len(nums2)
-        mid = int((nums1_len + nums2_len)/ 2) + 1
+        mid = int((nums1_len + nums2_len) / 2) + 1
         even = True
         if (nums1_len + nums2_len) % 2 == 1:
             even = False
         result = []
-        i, j, =  0, 0
+        i, j, = 0, 0
         while True:
             if i < nums1_len and j < nums2_len and nums1[i] <= nums2[j]:
                 result.append(nums1[i])
@@ -56,6 +58,7 @@ class Solution(object):
 
 
 class SolutionB(object):
+
     def findMedianSortedArrays(self, nums1, nums2):
         """
         :type nums1: List[int]
@@ -64,6 +67,7 @@ class SolutionB(object):
 
         O(lg(m+n))
         """
+
         def search(l1, l2, k):
             if len(l1) == 0:
                 return l2[k]
@@ -75,32 +79,34 @@ class SolutionB(object):
             mid2 = len(l2) >> 1
             if mid1 + mid2 < k:
                 if l1[mid1] > l2[mid2]:
-                    return search(l1, l2[mid2+1:], k - mid2 - 1)
-                return search(l1[mid1+1:], l2, k - mid1 - 1)
+                    return search(l1, l2[mid2 + 1:], k - mid2 - 1)
+                return search(l1[mid1 + 1:], l2, k - mid1 - 1)
             else:
                 if l1[mid1] > l2[mid2]:
                     return search(l1[:mid1], l2, k)
                 return search(l1, l2[:mid2], k)
+
         leng = len(nums1) + len(nums2)
-        if leng % 2== 0:
+        if leng % 2 == 0:
             return (search(nums1, nums2, leng >> 1) + search(nums1, nums2, (leng >> 1) - 1)) / 2.0
         return search(nums1, nums2, leng >> 1)
 
 
 class SolutionC(object):
+
     def findMedianSortedArrays(self, a, b):
         """
         :type nums1: List[int]
         :type nums2: List[int]
         :rtype: float
         """
-        c = a+b
+        c = a + b
         c.sort()
         m = len(c) / 2
         mm = len(c) % 2
-        if mm > 0 :
+        if mm > 0:
             return c[m]
-        return (c[m-1]+c[m])/2.0
+        return (c[m - 1] + c[m]) / 2.0
 
 
 if __name__ == '__main__':

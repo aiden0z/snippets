@@ -21,6 +21,7 @@ Refer https://leetcode.com/problems/longest-common-prefix
 
 
 class Solution:
+
     def longestCommonPrefix(self, strs):
         """
         :type strs: List[str]
@@ -44,12 +45,14 @@ class Solution:
 
 
 class SolutionB:
+
     def longestCommonPrefix(self, strs):
         """
         :type strs: List[str]
         :rtype: str
         """
-        if not strs: return ''
+        if not strs:
+            return ''
         # since list of string will be sorted and retrieved min max by alphebetic order
         s1 = min(strs)
         s2 = max(strs)
@@ -60,13 +63,8 @@ class SolutionB:
         return s1
 
 
-
-if __name__  == '__main__':
-    cases = [
-        (["flower","flow","flight"], 'fl'),
-        (["dog","racecar","car"], ''),
-        ([], '')
-    ]
+if __name__ == '__main__':
+    cases = [(["flower", "flow", "flight"], 'fl'), (["dog", "racecar", "car"], ''), ([], '')]
 
     s = Solution()
     sb = SolutionB()

@@ -1,6 +1,6 @@
 """4Sum
-Given an array `nums` of n integers and an integer `target`,  are there elements a, b, c and d in 
-`nums` such that a + b + c + d = target ? Find all unique quadruplets in the array which gives the 
+Given an array `nums` of n integers and an integer `target`,  are there elements a, b, c and d in
+`nums` such that a + b + c + d = target ? Find all unique quadruplets in the array which gives the
 sum of target.
 
 Note:
@@ -20,6 +20,7 @@ A solution set is :
 Refer https://leetcode.com/problems/4sum
 """
 
+
 class Solution:
     """二分法思想"""
 
@@ -31,7 +32,7 @@ class Solution:
         """
 
         results = []
-        
+
         if len(nums) < 4:
             return results
         nums.sort()
@@ -81,7 +82,7 @@ class SolutionRecursive:
             if n < 2:
                 return
             if high - low + 1 < n:
-                return 
+                return
             if target < nums[low] * n:
                 return
             if target > nums[high] * n:
@@ -102,44 +103,19 @@ class SolutionRecursive:
             else:
                 for i in range(low, high + 1):
                     # why ?
-                    if i == low or (i > low and nums[i-1] != nums[i]):
-                        find_nsum(i+1, high, target-nums[i], n-1, (*subresult, nums[i]))
-        find_nsum(0, len(nums)-1, target, 4, [])
+                    if i == low or (i > low and nums[i - 1] != nums[i]):
+                        find_nsum(i + 1, high, target - nums[i], n - 1, (*subresult, nums[i]))
+
+        find_nsum(0, len(nums) - 1, target, 4, [])
         return list(results)
 
+
 if __name__ == '__main__':
-    cases = [
-        (
-            [1, 0, -1, 0, -2, 2], 
-            0, 
-            [
-                [-1, 0, 0, 1],
-                [-2, -1, 1, 2],
-                [-2, 0, 0, 2]
-            ]
-        ),
-        (
-            [0, 0, 0, 0],
-            0, 
-            [ 
-                [0, 0, 0, 0] 
-            ]
-        ),
-        (
-            [-3, -2, -1, 0, 0, 1, 2, 3],
-            0,
-            [
-                [-3, -2, 2, 3],
-                [-3, -1, 1, 3],
-                [-3, 0, 0, 3],
-                [-3, 0, 1, 2],
-                [-2, -1, 0, 3],
-                [-2, -1 , 1 ,2],
-                [-2, 0, 0, 2],
-                [-1, 0, 0, 1]
-            ]
-        )
-    ]
+    cases = [([1, 0, -1, 0, -2, 2], 0, [[-1, 0, 0, 1], [-2, -1, 1, 2], [-2, 0, 0, 2]]),
+             ([0, 0, 0, 0], 0, [[0, 0, 0, 0]]),
+             ([-3, -2, -1, 0, 0, 1, 2, 3], 0, [[-3, -2, 2, 3], [-3, -1, 1, 3], [-3, 0, 0, 3],
+                                               [-3, 0, 1, 2], [-2, -1, 0, 3], [-2, -1, 1, 2],
+                                               [-2, 0, 0, 2], [-1, 0, 0, 1]])]
     solutions = [Solution, SolutionRecursive]
     for case in cases:
         target_set = set()

@@ -3,7 +3,7 @@
 *.pyc
 *.jar
 *.war
-env/
+.venv/
 .idea
 *.iml
-.vscode
+.vscode/tags

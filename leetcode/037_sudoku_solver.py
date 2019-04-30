@@ -17,11 +17,13 @@ Note:
 * The given board size is always 9x9.
 """
 
-def print_grid(arr): 
-    for i in range(9): 
-        for j in range(9): 
+
+def print_grid(arr):
+    for i in range(9):
+        for j in range(9):
             print(arr[i][j], end=' ')
         print('\n')
+
 
 class Solution:
     """回溯解法
@@ -54,7 +56,7 @@ class Solution:
     def inBox(matrix, row, col, num):
         for i in range(3):
             for j in range(3):
-                if matrix[i+row][j+col] == num:
+                if matrix[i + row][j + col] == num:
                     return True
         return False
 
@@ -73,8 +75,8 @@ class Solution:
 
         for num in range(1, 10):
             digit = str(num)
-            if not (self.inBox(matrix, row-row%3, col-col%3, digit) or 
-                    self.inCol(matrix, col, digit) or self.inRow(matrix, row, digit)):
+            if not (self.inBox(matrix, row - row % 3, col - col % 3, digit)
+                    or self.inCol(matrix, col, digit) or self.inRow(matrix, row, digit)):
                 matrix[row][col] = digit
                 if self.solve(matrix):
                     return True
@@ -87,20 +89,20 @@ class Solution:
         :rtype: void Do not return anything, modify board in-place instead.
         """
         self.solve(board)
-        
 
-if __name__=="__main__": 
-      
-    # assigning values to the grid 
-    grid=[['3','.','6','5','.','8','4','.','.'], 
-          ['5','2','.','.','.','.','.','.','.'], 
-          ['.','8','7','.','.','.','.','3','1'], 
-          ['.','.','3','.','1','.','.','8','.'], 
-          ['9','.','.','8','6','3','.','.','5'], 
-          ['.','5','.','.','9','.','6','.','.'], 
-          ['1','3','.','.','.','.','2','5','.'], 
-          ['.','.','.','.','.','.','.','7','4'], 
-          ['.','.','5','2','.','6','3','.','.']] 
+
+if __name__ == "__main__":
+
+    # assigning values to the grid
+    grid = [['3', '.', '6', '5', '.', '8', '4', '.', '.'],
+            ['5', '2', '.', '.', '.', '.', '.', '.', '.'],
+            ['.', '8', '7', '.', '.', '.', '.', '3', '1'],
+            ['.', '.', '3', '.', '1', '.', '.', '8', '.'],
+            ['9', '.', '.', '8', '6', '3', '.', '.', '5'],
+            ['.', '5', '.', '.', '9', '.', '6', '.', '.'],
+            ['1', '3', '.', '.', '.', '.', '2', '5', '.'],
+            ['.', '.', '.', '.', '.', '.', '.', '7', '4'],
+            ['.', '.', '5', '2', '.', '6', '3', '.', '.']]
 
     Solution().solveSudoku(grid)
     print_grid(grid)

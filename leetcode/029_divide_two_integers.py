@@ -1,6 +1,6 @@
 """Divide Two Integers
 
-Given two integers dividend and dvisor, divide two integer without using multiplication, 
+Given two integers dividend and dvisor, divide two integer without using multiplication,
 dvision and mod perator.
 
 Return the quotient after dividing dividend by dvisor.
@@ -28,8 +28,10 @@ Reference https://leetcode.com/problems/divide-two-integers/
 
 """
 
+
 class Solution:
     """每次2倍增长"""
+
     def divide(self, dividend, divisor):
         """
         :type dividend: int
@@ -41,15 +43,15 @@ class Solution:
 
         if divisor == -1:
             result = -dividend
-            if result >= 2 ** 31 -1:
-                return 2 ** 31 - 1
+            if result >= 2**31 - 1:
+                return 2**31 - 1
             else:
                 return result
         if dividend < 0:
             a = -dividend
         else:
             a = dividend
-        
+
         if divisor < 0:
             b = -divisor
         else:
@@ -64,7 +66,7 @@ class Solution:
             while a >= (x << 1):
                 x <<= 1
                 result <<= 1
-            
+
             return divide(a - x, b) + result
 
         result = divide(a, b)
@@ -75,8 +77,8 @@ class Solution:
             return -result
 
 
-
 class SolutionBasedSubtraction:
+
     def divide(self, dividend, divisor):
         """
         :type dividend: int
@@ -88,8 +90,8 @@ class SolutionBasedSubtraction:
 
         if divisor == -1:
             result = -dividend
-            if result >= 2 ** 31 -1:
-                return 2 ** 31 - 1
+            if result >= 2**31 - 1:
+                return 2**31 - 1
             else:
                 return result
 
@@ -97,7 +99,7 @@ class SolutionBasedSubtraction:
             a = -dividend
         else:
             a = dividend
-        
+
         if divisor < 0:
             b = -divisor
         else:
@@ -115,12 +117,7 @@ class SolutionBasedSubtraction:
 
 
 if __name__ == '__main__':
-    cases = [
-        (10, 3, 3),
-        (7, -3, -2),
-        (-2147483648, -1, 2147483647),
-        (2147483647, 2, 1073741823)
-    ]
+    cases = [(10, 3, 3), (7, -3, -2), (-2147483648, -1, 2147483647), (2147483647, 2, 1073741823)]
 
     solutions = [Solution]
 

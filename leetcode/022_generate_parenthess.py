@@ -39,6 +39,7 @@ class Solution:
         :rtype: List[str]
         """
         results = []
+
         # 获取所有可能的组合
         def generate(s):
             if len(s) == n * 2:
@@ -47,6 +48,7 @@ class Solution:
                 return
             generate(s + '(')
             generate(s + ')')
+
         generate('(')
         return results
 
@@ -55,6 +57,7 @@ class SolutionRecursive:
     """非穷举递归解法
     符号总是成对出现，且 ')' 总是应出现在 '(' 右边
     """
+
     def generateParenthesis(self, n):
         """
         :type n: int
@@ -68,9 +71,9 @@ class SolutionRecursive:
         if right == n:
             return para.append(s)
         if left < n:
-            self.findmatch(s + '(', para, n, left+1, right)
-        if right<left:
-            self.findmatch(s + ')', para, n, left, right+1)
+            self.findmatch(s + '(', para, n, left + 1, right)
+        if right < left:
+            self.findmatch(s + ')', para, n, left, right + 1)
 
 
 class SolutionDP:
@@ -91,19 +94,11 @@ class SolutionDP:
 
 
 if __name__ == '__main__':
-    cases = [
-        (2, ['(())', '()()']),
-        (3, [
-            '((()))', '(()())', '(())()', '()(())', '()()()'
-            ]
-        ),
-        (4, [
-            '(((())))', '((()()))', '((())())', '((()))()', '(()(()))', '(()()())',
-            '(()())()', '(())(())', '(())()()', '()((()))', '()(()())', '()(())()',
-            '()()(())', '()()()()'
-            ]
-        )
-    ]
+    cases = [(2, ['(())', '()()']), (3, ['((()))', '(()())', '(())()', '()(())', '()()()']),
+             (4, [
+                 '(((())))', '((()()))', '((())())', '((()))()', '(()(()))', '(()()())', '(()())()',
+                 '(())(())', '(())()()', '()((()))', '()(()())', '()(())()', '()()(())', '()()()()'
+             ])]
     solutions = [Solution, SolutionRecursive, SolutionDP]
     for case in cases:
         print('generate {} paris'.format(case[0]))

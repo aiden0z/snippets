@@ -18,6 +18,7 @@ import time
 
 
 class Solution(object):
+
     def lengthOfLongestSubstring(self, s):
         """递归版本
         :type s: str
@@ -44,10 +45,13 @@ class Solution(object):
                         self.sub = sub
                         self.result = l
                     indexes[c] = i
+
         search(s)
         return self.result
 
+
 class SolutionB(object):
+
     def lengthOfLongestSubstring(self, s):
         """ 非递归版本
         :type s: str
@@ -78,6 +82,7 @@ class SolutionB(object):
 
 
 class SolutionC(object):
+
     def lengthOfLongestSubstring(self, s):
         """ 动态规划版本
         :type s: str
@@ -113,13 +118,12 @@ class SolutionC(object):
                     crt_len = i - indexes[c]
                     last_index = indexes[c] + 1
             else:
-                    crt_len += 1
+                crt_len += 1
             # 记录(更新)字符 c 的索引
             indexes[c] = i
             if crt_len > max_len:
                 max_len = crt_len
         return max_len
-
 
 
 if __name__ == '__main__':

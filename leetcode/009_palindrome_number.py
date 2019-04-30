@@ -6,6 +6,7 @@ Refer https://leetcode.com/problems/palindrome-number/description/
 
 
 class Solution(object):
+
     def isPalindrome(self, x):
         """
         :type x: int
@@ -25,11 +26,11 @@ class Solution(object):
             return False
 
 
-class  SolutionB(object):
+class SolutionB(object):
+
     def isPalindrome(self, x):
         x_str = str(x)
         return False if x_str[0] == '-' else x_str == x_str[::-1]
-
 
 
 if __name__ == '__main__':
@@ -39,4 +40,3 @@ if __name__ == '__main__':
     for case in cases:
         assert s.isPalindrome(case[0]) == case[1]
         assert sb.isPalindrome(case[0]) == case[1]
-

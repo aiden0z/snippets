@@ -11,6 +11,7 @@ Refer https://leetcode.com/problems/add-two-numbers/description/
 
 
 class ListNode(object):
+
     def __init__(self, x):
         self.val = x
         self.next = None
@@ -68,7 +69,7 @@ class Solution(object):
             if q is not None:
                 q = q.next
 
-        if carry > 0 :
+        if carry > 0:
             curr.next = ListNode(carry)
         return dummpy_head.next
 
@@ -144,10 +145,7 @@ class SolutionConvert(object):
 
 
 if __name__ == '__main__':
-    cases = [
-        (([5, 2, 5], [7, 1, 6]), [2, 4, 1, 1]),
-        (([2, 4, 3], [5, 6, 4]), [7, 0, 8])
-    ]
+    cases = [(([5, 2, 5], [7, 1, 6]), [2, 4, 1, 1]), (([2, 4, 3], [5, 6, 4]), [7, 0, 8])]
 
     for case in cases:
         l1 = ListNode.create_from_list(case[0][0])

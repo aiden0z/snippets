@@ -29,6 +29,7 @@ def iter_linked_list(head):
 
 
 class ListNode:
+
     def __init__(self, x):
         self.val = x
         self.next = None
@@ -79,10 +80,12 @@ class SolutionRecursive:
         :type l2: ListNode
         :rtype: ListNode
         """
-        if(l1 == None): return l2
-        if(l2 == None): return l1
-        
-        if(l1.val < l2.val):
+        if l1 is None:
+            return l2
+        if l2 is None:
+            return l1
+
+        if l1.val < l2.val:
             l1.next = self.mergeTwoLists(l1.next, l2)
             return l1
         else:
@@ -101,5 +104,5 @@ if __name__ == '__main__':
         print([node.val for node in iter_linked_list(case[0])])
         print([node.val for node in iter_linked_list(case[1])])
         for solution in solutions:
-            l = solution().mergeTwoLists(case[0], case[1])
-            print(solution.__name__, [node.val for node in iter_linked_list(l)])
+            result = solution().mergeTwoLists(case[0], case[1])
+            print(solution.__name__, [node.val for node in iter_linked_list(result)])

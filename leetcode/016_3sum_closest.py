@@ -12,14 +12,16 @@ The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 Refer https://leetcode.com/problems/3sum-closest
 """
 
+
 class Solution:
+
     def threeSumClosest(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
         :rtype: int
         """
-        
+
         if not nums or len(nums) < 3:
             return 0
         nums.sort()
@@ -39,17 +41,13 @@ class Solution:
                     l += 1
                 if s > target:
                     r -= 1
-                if abs(s-target) < abs(minimum - target):
+                if abs(s - target) < abs(minimum - target):
                     minimum = s
         return minimum
 
 
 if __name__ == '__main__':
-    cases = [
-        ([-1, 2, 1, -4], 1, 2),
-        ([-1, -2, 4, 5, -2], 0, 0),
-        ([-5, -10, 0, 20], 30, 15)
-    ]
+    cases = [([-1, 2, 1, -4], 1, 2), ([-1, -2, 4, 5, -2], 0, 0), ([-5, -10, 0, 20], 30, 15)]
     s = Solution()
 
     for case in cases:

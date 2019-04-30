@@ -15,18 +15,19 @@ import re
 
 
 class Solution(object):
+
     def myAtoi(self, str):
         """
         :type str: str
         :rtype: int
         """
-        MAX = 2 ** 31 - 1
-        MIN = 0 - 2 ** 31
+        MAX = 2**31 - 1
+        MIN = 0 - 2**31
         str = str.strip()
         pattern = re.compile(r'^[\+|\-]?[0-9]+|^[0-9]*')
         matchs = pattern.findall(str)
         if len(matchs) > 0 and matchs[0] != '':
-            result =  int(matchs[0])
+            result = int(matchs[0])
             if result > MAX:
                 return MAX
             if result < MIN:
@@ -35,10 +36,12 @@ class Solution(object):
         else:
             return 0
 
+
 class SolutionB(object):
+
     def myAtoi(self, str):
-        MAX = 2 ** 31 - 1
-        MIN = 0 - 2 ** 31
+        MAX = 2**31 - 1
+        MIN = 0 - 2**31
         str = str.strip()
         if len(str) == 0:
             return 0
@@ -63,14 +66,11 @@ class SolutionB(object):
             return result
 
 
-
-
 if __name__ == '__main__':
     s = Solution()
     sb = SolutionB()
-    testcases = [('+-2', 0), ('-ads23', 0), ('012', 12), ('-012', -12),
-                 ('+004500', 4500), ('2147483648', 2147483647),
-                 ('-2147483649', -2147483648)]
+    testcases = [('+-2', 0), ('-ads23', 0), ('012', 12), ('-012', -12), ('+004500', 4500),
+                 ('2147483648', 2147483647), ('-2147483649', -2147483648)]
     for case in testcases:
         assert s.myAtoi(case[0]) == case[1]
         assert sb.myAtoi(case[0]) == case[1]

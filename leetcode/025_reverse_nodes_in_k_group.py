@@ -39,6 +39,7 @@ def iter_linked_list(head):
 
 
 class ListNode:
+
     def __init__(self, x):
         self.val = x
         self.next = None
@@ -46,6 +47,7 @@ class ListNode:
 
 class Solution:
     """使用栈解法"""
+
     def reverseKGroup(self, head, k):
         """
         :type head: ListNode
@@ -64,10 +66,10 @@ class Solution:
             current = current.next
             if size == k:
                 while size > 0:
-                    tmp.next= stack.pop()
+                    tmp.next = stack.pop()
                     tmp = tmp.next
                     size -= 1
-        
+
         while len(stack) > 0:
             tmp.next = stack.pop(0)
             tmp = tmp.next
@@ -76,23 +78,24 @@ class Solution:
 
 
 class SolutionRecursive:
+
     def reverseKGroup(self, head, k):
         """
         :type head: ListNode
         :type k: int
         :rtype: ListNode
         """
-        if head == None:
+        if head is None:
             return head
         if k <= 1:
             return head
         count = 0
         curr = head
-        while curr != None:
+        while curr is not None:
             curr = curr.next
             count += 1
         return self.reverseHelper(head, k, count)
-    
+
     def reverseHelper(self, head, k, count):
         target = k
         if count < k:
@@ -123,6 +126,6 @@ if __name__ == '__main__':
     for case in cases:
         print('Input:', [node.val for node in iter_linked_list(case[0])], case[1])
         for solution in solutions:
-            l = solution().reverseKGroup(copy.deepcopy(case[0]), case[1])
-            print('{}: {}'.format(solution.__name__, [node.val for node in iter_linked_list(l)]))
-
+            result = solution().reverseKGroup(copy.deepcopy(case[0]), case[1])
+            print('{}: {}'.format(solution.__name__,
+                                  [node.val for node in iter_linked_list(result)]))

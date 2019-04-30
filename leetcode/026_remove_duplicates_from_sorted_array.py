@@ -1,16 +1,16 @@
 """Remove Duplicates from Sorted Array
 
-Given a sorted array nums, remove the duplicate in-place sunch that each element appear only once 
+Given a sorted array nums, remove the duplicate in-place sunch that each element appear only once
 and return the new length.
 
-Do not allocate extra space for another array, you must to this by modifying the input array 
+Do not allocate extra space for another array, you must to this by modifying the input array
 in-place with O(1) extray memory.
 
 Example 1:
 
     Gieven nums = [1, 1, 2],
 
-    Your function should return length = 2, 
+    Your function should return length = 2,
     with the first two elements of nums being 1 and 2
     respectively.
 
@@ -20,7 +20,7 @@ Example 2:
 
     Given nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
 
-    Your function should return length = 5, 
+    Your function should return length = 5,
     with the first five elements of nums being
     modified to 0, 1, 2, 3, and 4 respectively.
 
@@ -31,7 +31,7 @@ Clarification:
 
 Confused why the returned value is an integer but you answer is an array?
 
-Note that input array is passed in by reference, which means modification to the input array will 
+Note that input array is passed in by reference, which means modification to the input array will
 be known to the caller as well.
 
 Internally you can think of this:
@@ -50,6 +50,7 @@ import copy
 
 
 class Solution:
+
     def removeDuplicates(self, nums):
         """
         :type nums: List[int]
@@ -71,6 +72,7 @@ class Solution:
                 r += 1
         return l + 1
 
+
 class SolutionFast:
 
     def removeDuplicates(self, nums):
@@ -83,30 +85,32 @@ class SolutionFast:
         prev = 0
 
         for i in range(1, len(nums)):
-            current = nums[i] 
+            current = nums[i]
             if current != nums[prev]:
                 prev += 1
                 nums[prev] = current
         return prev + 1
 
+
 class SolutionSlow:
+
     def removeDuplicates(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
 
-        right = len(nums) - 1 
+        right = len(nums) - 1
         for i in range(1, len(nums)):
             while True:
                 if i == right + 1:
                     break
-                if nums[i] == nums[i-1]:
+                if nums[i] == nums[i - 1]:
                     tmp = nums[i]
                     # 移动所有元素
                     k = i
                     while k <= len(nums) - 2:
-                        nums[k] =nums[k+1]
+                        nums[k] = nums[k + 1]
                         k += 1
                     # 将重复元素移动到末尾
                     nums[len(nums) - 1] = tmp

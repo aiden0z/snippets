@@ -26,7 +26,9 @@ Example 4:
     Output: 0
 """
 
+
 class Solution:
+
     def searchInsert(self, nums, target):
         """
         :type nums: List[int]
@@ -50,15 +52,10 @@ class Solution:
             return r - 1 or 0
         return r + 1
 
+
 if __name__ == '__main__':
-    cases = [
-        ([1, 3, 5, 6], 5, 2),
-        ([1, 3, 5, 6], 2, 1),
-        ([1, 3, 5, 6], 7, 4),
-        ([1, 3, 5, 6], 0, 0),
-        ([1, 2, 4, 6, 7], 3, 2),
-        ([1], 1, 0)
-    ]
+    cases = [([1, 3, 5, 6], 5, 2), ([1, 3, 5, 6], 2, 1), ([1, 3, 5, 6], 7, 4), ([1, 3, 5, 6], 0, 0),
+             ([1, 2, 4, 6, 7], 3, 2), ([1], 1, 0)]
 
     solutions = [Solution]
     for case in cases:
