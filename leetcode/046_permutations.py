@@ -19,7 +19,7 @@ import pprint
 from typing import List
 
 
-class Solution:
+class SolutionBacktrace:
 
     def cal(self, nums: List[int], l: int, r: int, result: List):
         nums = nums[:]
@@ -58,6 +58,20 @@ class SolutionB:
                 l.append([m] + p)
 
         return l
+
+
+class SolutionDFS:
+
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        self.dfs(nums, [], res)
+        return res
+
+    def dfs(self, nums: List[int], path: List[int], res: List[List[int]]):
+        if not nums:
+            res.append(path)
+        for i in range(len(nums)):
+            self.dfs(nums[:i] + nums[i + 1:], path + [nums[i]], res)
 
 
 if __name__ == '__main__':
@@ -113,7 +127,7 @@ if __name__ == '__main__':
     ]  # yapf: disable
 
     for case in cases:
-        for S in [Solution, SolutionB]:
+        for S in [SolutionBacktrace, SolutionB, SolutionDFS]:
             result = S().permute(case[0])
             for item in case[1]:
                 assert item in result
