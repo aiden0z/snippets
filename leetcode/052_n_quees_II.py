@@ -88,12 +88,13 @@ class SolutionDFS:
     def totalNQueens(self, n: int) -> int:
         self.solutions = 0
 
-        def dfs(state, pd: List[int], nd: List[int]):
+        def dfs(state: List[int], pd: List[int], nd: List[int]):
             r = len(state)
             if r == n:
                 self.solutions += 1
             else:
                 for c in range(n):
+                    # 表示所在列，主对角线（左上角到右下角），副对角线（左下角到右上角）均没有
                     if c not in state and c - r not in nd and c + r not in pd:
                         dfs(state + [c], pd + [c + r], nd + [c - r])
 
