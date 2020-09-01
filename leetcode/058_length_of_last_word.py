@@ -33,5 +33,4 @@ if __name__ == '__main__':
 
     for case in cases:
         for S in [Solution]:
-            # assert S().lengthOfLastWord(case[0]) == case[1]
-            print(S().lengthOfLastWord(case[0]))
+            assert S().lengthOfLastWord(case[0]) == case[1]
