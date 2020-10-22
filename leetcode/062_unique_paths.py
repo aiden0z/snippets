@@ -54,7 +54,7 @@ class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         """DP solution
         维护一个二维数组 dp，其中 dp[i][j] 表示到 i,j 所在位置不同的走法的个数
-        可以获得状态转移方程 dp[i][j] = dp[i-1] + dp[i][j-1]
+        可以获得状态转移方程 dp[i][j] = dp[i-1][j] + dp[i][j-1]
         """
         # 使用一维数组实现
         dp = [1] * n
