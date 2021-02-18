@@ -47,14 +47,56 @@ Example 4:
 Constraints:
 
 * 1 <= s.length <= 20
-* s consists of only English letters (both uppercase and lowercase), digits (0-9), plus '+', minus '-', or dot '.'.
+* s consists of only English letters (both uppercase and lowercase), digits (0-9), plus '+',
+  minus '-', or dot '.'.
 """
+
+import re
 
 
 class Solution:
 
     def isNumber(self, s: str) -> bool:
-        pass
+        decimal_patterns = [r'[\+-]?[0-9]+\.', r'[\+-]?[0-9]+\.[0-9]+', r'[\+-]?\.[0-9]+']
+        integer_patterns = [r'[\+-]?[0-9]+']
+
+        for p in decimal_patterns + integer_patterns:
+            if re.match(p + '$', s):
+                return True
+
+        for p1 in decimal_patterns:
+            for p2 in integer_patterns:
+                p = p1 + r'[eE]{1}' + p2 + '$'
+                if re.match(p, s):
+                    return True
+                p = p2 + r'[eE]{1}' + p2 + '$'
+                if re.match(p, s):
+                    return True
+        return False
+
+
+class SolutionB:
+
+    def isNumber(self, s: str) -> bool:
+        s = s.lower().strip()
+        met_dot = met_e = met_digit = False
+        for i, char in enumerate(s):
+            if char in ['+', '-']:
+                if i > 0 and s[i - 1] != 'e':
+                    return False
+            elif char == '.':
+                if met_dot or met_e:
+                    return False
+                met_dot = True
+            elif char == 'e':
+                if met_e or not met_digit:
+                    return False
+                met_e, met_digit = True, False
+            elif char.isdigit():
+                met_digit = True
+            else:
+                return False
+        return met_digit
 
 
 if __name__ == '__main__':
@@ -62,7 +104,8 @@ if __name__ == '__main__':
              ("2e10", True), ("-90E3", True), ("3e+7", True), ("+6e-1", True), ("+6e-1", True),
              ("53.5e93", True), ("-123.456e789", True), ("e", False), ("abc", False), ("1a", False),
              ("1e", False), ("e3", False), ("99e2.5", False), ("--6", False), ("-+3", False),
-             ("95a54e53", False)]
+             ("95a54e53", False), ("6+1", False)]
 
     for case in cases:
         assert Solution().isNumber(case[0]) == case[1]
+        assert SolutionB().isNumber(case[0]) == case[1]
