@@ -36,13 +36,52 @@ class Solution:
 
     def plus_one(self, digits: List[int]) -> List[int]:
 
-        for i in range(len(digits), 0, -1):
-            print(digits[i])
+        digits = digits[:]
+        n = len(digits)
+
+        for i in range(n - 1, -1, -1):
+            if i == n - 1:
+                digits[i] += 1
+                continue
+            if digits[i + 1] < 10:
+                return digits
+            digits[i + 1] -= 10
+            digits[i] += 1
+
+        if digits[0] > 9:
+            digits[0] -= 10
+            digits.insert(0, 1)
+        return digits
+
+    def plus_one_2(self, digits: List[int]) -> List[int]:
+
+        n = len(digits)
+        digits[n - 1] += 1
+
+        if digits[n - 1] < 10:
+            return digits
+
+        carry = 0
+        for i in range(n - 1, -1, -1):
+            digits[i] += carry
+            if digits[i] > 9:
+                digits[i] -= 10
+                carry = 1
+            else:
+                carry = 0
+
+        if digits[0] > 9 or carry == 1:
+            if digits[0] > 9:
+                digits[0] -= 10
+            digits.insert(0, 1)
+        return digits
 
 
 if __name__ == '__main__':
 
-    cases = [([4, 3, 2, 1], [4, 3, 2, 2]), ([1, 2, 3], [1, 2, 4]), ([0], [1]), ([9], [1, 0])]
+    cases = [([4, 3, 2, 1], [4, 3, 2, 2]), ([1, 2, 3], [1, 2, 4]), ([0], [1]), ([9], [1, 0]),
+             ([0], [1]), ([9, 8, 9], [9, 9, 0])]
 
     for case in cases:
         assert Solution().plus_one(case[0]) == case[1]
+        assert Solution().plus_one_2(case[0]) == case[1]

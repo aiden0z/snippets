@@ -56,7 +56,7 @@ import re
 
 class Solution:
 
-    def isNumber(self, s: str) -> bool:
+    def is_number(self, s: str) -> bool:
         decimal_patterns = [r'[\+-]?[0-9]+\.', r'[\+-]?[0-9]+\.[0-9]+', r'[\+-]?\.[0-9]+']
         integer_patterns = [r'[\+-]?[0-9]+']
 
@@ -77,7 +77,7 @@ class Solution:
 
 class SolutionB:
 
-    def isNumber(self, s: str) -> bool:
+    def is_number(self, s: str) -> bool:
         s = s.lower().strip()
         met_dot = met_e = met_digit = False
         for i, char in enumerate(s):
@@ -107,5 +107,5 @@ if __name__ == '__main__':
              ("95a54e53", False), ("6+1", False)]
 
     for case in cases:
-        assert Solution().isNumber(case[0]) == case[1]
-        assert SolutionB().isNumber(case[0]) == case[1]
+        assert Solution().is_number(case[0]) == case[1]
+        assert SolutionB().is_number(case[0]) == case[1]
