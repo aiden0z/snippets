@@ -67,14 +67,72 @@ Constraints:
 * words[i].length <= maxWidth
 """
 
-from typing import List
 
+class Solution(object):
 
-class Solution:
+    def full_justify(self, words, max_width):
+        """
+        :type words: List[str]
+        :type maxWidth: int
+        :rtype: List[str]
+        """
+        line = []
+        length = 0
+        res = []
+        for i, v in enumerate(words):
+            if len(line) - 1 + length + len(v) >= max_width:
+                self.format(line, length, max_width, res)
+                line = []
+                length = 0
+            length += len(v)
+            line.append(v)
+        if len(line) > 0:
+            self.format(line, length, max_width, res)
 
-    def full_justify(self, words: List[str], max_width: int) -> List[str]:
-        pass
+        last = res.pop(-1)
+        last_char = None
+        formats = ''
+        for i in last:
+            if last_char == ' ' and i == ' ':
+                continue
+            formats += i
+            last_char = i
+        formats += ' ' * (max_width - len(formats))
+        res.append(formats)
+        return res
+
+    def format(self, line, length, max_width, res):
+        diff = max_width - length
+        remainder = 0
+        if (len(line) - 1) > 1:
+            interval = diff // (len(line) - 1)
+            remainder = diff % (len(line) - 1)
+        else:
+            interval = diff
+        w = ''
+        for inx, val in enumerate(line):
+            w += val
+            if inx != len(line) - 1 or len(line) == 1:
+                if remainder > 0:
+                    w += ' ' * (interval + 1)
+                    remainder -= 1
+                else:
+                    w += ' ' * (interval)
+        res.append(w)
 
 
 if __name__ == '__main__':
-    pass
+    cases = [(["This", "is", "an", "example", "of", "text",
+               "justification."], 16, ["This    is    an", "example  of text", "justification.  "]),
+             (["What", "must", "be", "acknowledgment", "shall",
+               "be"], 16, ["What   must   be", "acknowledgment  ", "shall be        "]),
+             ([
+                 "Science", "is", "what", "we", "understand", "well", "enough", "to", "explain",
+                 "to", "a", "computer.", "Art", "is", "everything", "else", "we", "do"
+             ], 20, [
+                 "Science  is  what we", "understand      well", "enough to explain to",
+                 "a  computer.  Art is", "everything  else  we", "do                  "
+             ])]
+
+    for case in cases:
+        assert Solution().full_justify(case[0], case[1]) == case[2]
