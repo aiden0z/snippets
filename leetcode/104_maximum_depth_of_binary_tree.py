@@ -30,7 +30,7 @@ Constraints:
 
 from typing import Optional, List
 
-from utils.bst import TreeNode, BinaryTreeBuilder
+from utils.binary_tree import TreeNode, BinaryTreeBuilder
 
 
 class Solution:
@@ -38,7 +38,6 @@ class Solution:
     def max_depth(self, root: Optional[TreeNode]) -> int:
         res = 0
         depth = 0
-
         def traverse(root):
             nonlocal res
             nonlocal depth

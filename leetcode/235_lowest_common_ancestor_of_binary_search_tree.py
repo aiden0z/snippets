@@ -32,38 +32,15 @@ Example 2:
     Explanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the
     LCA definition.
 
+Constraints:
+
+    * The number of nodes in the tree is in the range [2, 105].
+    * -109 <= Node.val <= 109
+    * All Node.val are unique.
+    * p != q
+    * p and q will exist in the BST.
 """
-from typing import Optional, List
-
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-
-class BinarySearchTreeBuilder:
-
-    @staticmethod
-    def build_from_level_ordered(level_ordered_tree: List) -> Optional[TreeNode]:
-        if not level_ordered_tree:
-            return None
-        root = TreeNode(level_ordered_tree[0])
-        nodes = [root]
-        start = 1
-        while nodes and start < len(level_ordered_tree):
-            node = nodes[0]
-            node.left = TreeNode(level_ordered_tree[start]) if level_ordered_tree[start] is not None else None
-            nodes.append(node.left)
-            if start < len(level_ordered_tree) - 1 and level_ordered_tree[start+1] is not None:
-                node.right = TreeNode(level_ordered_tree[start + 1])
-            else:
-                node.right = None
-            nodes.append(node.right)
-            start += 2
-            nodes.pop(0)
-        return root
+from utils.binary_tree import TreeNode, BinaryTreeBuilder
 
 
 class Solution:
@@ -95,7 +72,7 @@ if __name__ == '__main__':
 
     ss = (Solution(),)
     for case in testcases:
-        root = BinarySearchTreeBuilder.build_from_level_ordered(case[0])
+        root = BinaryTreeBuilder.build_from_level_ordered(case[0])
         for s in ss:
             assert s.lowestCommonAncestor(root, TreeNode(case[1]), TreeNode(case[2])).val == case[3]
 

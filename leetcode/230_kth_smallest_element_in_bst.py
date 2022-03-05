@@ -35,9 +35,9 @@ Follow up: If the BST is modified often (i.e., we can do insert and delete opera
 and you need to find the kth smallest frequently, how would you optimize?
 """
 
-from typing import Optional, List
+from typing import Optional
 
-from utils.bst import TreeNode, BinaryTreeBuilder 
+from utils.binary_tree import TreeNode, BinaryTreeBuilder
 
 
 class Solution:

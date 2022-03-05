@@ -33,7 +33,7 @@ Constraints:
 
 from typing import Optional
 
-from utils.bst import TreeNode, BinaryTreeBuilder
+from utils.binary_tree import TreeNode, BinaryTreeBuilder
 
 
 class Solution:
