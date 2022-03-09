@@ -29,3 +29,34 @@ class BinaryTreeBuilder:
             start += 2
             nodes.pop(0)
         return root
+
+
+class BinaryTreeFormatter:
+
+    @staticmethod
+    def level_order(root: TreeNode) -> List[TreeNode]:
+        if root is None:
+            return None
+        result = list()
+        queue = list()
+        queue.append(root)
+        while queue:
+            node = queue.pop(0)
+            if node.left is not None:
+                queue.append(node.left)
+            if node.right is not None:
+                queue.append(node.right)
+            result.append(node)
+        return result
+
+    @staticmethod
+    def inorder(self, root: TreeNode) -> List[TreeNode]:
+        raise NotImplemented
+
+    @staticmethod
+    def preorder(self, root: TreeNode) -> List[TreeNode]:
+        raise NotImplemented
+
+    @staticmethod
+    def postorder(self, root: TreeNode) -> List[TreeNode]:
+        raise NotImplemented
