@@ -12,6 +12,9 @@ class TreeNode:
     def is_separator(self):
         return self.val == '#'
 
+    def __str__(self):
+        return f'TreeNode<{self.val}>'
+
 
 class BinaryTreeBuilder:
 
@@ -24,6 +27,9 @@ class BinaryTreeBuilder:
         start = 1
         while nodes and start < len(level_ordered_tree):
             node = nodes[0]
+            if node is None:
+                nodes.pop(0)
+                continue
             node.left = TreeNode(level_ordered_tree[start]) if level_ordered_tree[start] is not None else None
             nodes.append(node.left)
             if start < len(level_ordered_tree) - 1 and level_ordered_tree[start+1] is not None:

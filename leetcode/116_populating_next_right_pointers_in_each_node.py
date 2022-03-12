@@ -120,3 +120,4 @@ if __name__ == '__main__':
             else:
                 result = None
             assert result == correct_result
+            assert result == case[1]
