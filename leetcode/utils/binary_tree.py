@@ -6,6 +6,11 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+        self.next = None
+
+    @property
+    def is_separator(self):
+        return self.val == '#'
 
 
 class BinaryTreeBuilder:
@@ -48,6 +53,44 @@ class BinaryTreeFormatter:
                 queue.append(node.right)
             result.append(node)
         return result
+
+    @staticmethod
+    def level_order_with_connected_binary_tree(root: TreeNode) -> List[TreeNode]:
+        if root is None:
+            return None
+        result = []
+        node = root
+        while node:
+            head = node
+            while head:
+                result.append(head)
+                head = head.next
+            result.append(TreeNode('#'))
+            node = node.left
+        return result
+
+
+    @staticmethod
+    def level_order_with_separator_for_perfect_binary_tree(root: TreeNode) -> List[TreeNode]:
+        if root is None:
+            return None
+
+        result = list()
+        queue = list()
+        queue.append(root)
+        loop = 1
+        while queue:
+            node = queue.pop(0)
+            if node.left is not None:
+                queue.append(node.left)
+            if node.right is not None:
+                queue.append(node.right)
+            result.append(node)
+            if len(result) == 2**loop + loop - 2:
+                result.append(TreeNode('#'))
+                loop += 1
+        return result
+
 
     @staticmethod
     def inorder(self, root: TreeNode) -> List[TreeNode]:
