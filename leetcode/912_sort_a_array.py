@@ -47,6 +47,48 @@ class Solution:
 
 
 class SolutionB:
+
+    def sortArray(self, nums: List[int]) -> List[int]:
+        self.tmp = [None] * len(nums)
+        self._merge_sort(nums, 0, len(nums) -1)
+        return nums
+
+    def _merge_sort(self, nums: List[int], lo: int, hi: int):
+        if lo == hi:
+            return
+
+        # 防止溢出，py 中不存在该问题
+        mid = lo + (hi - lo) // 2
+
+        self._merge_sort(nums, lo, mid)
+        self._merge_sort(nums, mid + 1, hi)
+        self._merge(nums, lo, mid, hi)
+
+    def _merge(self, nums: List[int], lo: int, mid: int, hi: int):
+        for i in range(lo, hi+1):
+            self.tmp[i] = nums[i]
+        # 双指针合并两个有序数组
+        i = lo
+        j = mid + 1
+
+        for p in range(lo, hi + 1):
+            # 左半边数组已被全部合并
+            if i == mid + 1:
+                nums[p] = self.tmp[j]
+                j += 1
+            # 右半边数组已被全部合并
+            elif j == hi + 1:
+                nums[p] = self.tmp[i]
+                i += 1
+            elif self.tmp[i] > self.tmp[j]:
+                nums[p] = self.tmp[j]
+                j += 1
+            else:
+                nums[p] = self.tmp[i]
+                i += 1
+
+
+class SolutionC:
     """快排会超时？"""
 
     def sortArray(self, nums: List[int]) -> List[int]:
@@ -78,7 +120,7 @@ if __name__ == '__main__':
         [5, 1, 1, 2, 0, 0]
     ]
 
-    solutions = (SolutionB(), )
+    solutions = (Solution(), SolutionB(), SolutionC())
     for ss in solutions:
         for case in cases:
-            assert ss.sortArray(case) == sorted(case)
+            assert ss.sortArray(case[:]) == sorted(case)
