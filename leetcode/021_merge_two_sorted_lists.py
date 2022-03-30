@@ -10,29 +10,8 @@ Example:
 Refer https://leetcode.com/problems/merge-two-sorted-lists/
 """
 
-
-def generate_linked_list(n, step):
-    assert n > 1
-    head = ListNode(1)
-    node = head
-    for i in range(2, n, step):
-        node.next = ListNode(i)
-        node = node.next
-    return head
-
-
-def iter_linked_list(head):
-    node = head
-    while node is not None:
-        yield node
-        node = node.next
-
-
-class ListNode:
-
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+from utils.list import ListNode
+from utils.list import create_linked_list, iter_linked_list
 
 
 class Solution:
@@ -95,14 +74,12 @@ class SolutionRecursive:
 
 if __name__ == '__main__':
     cases = [
-        (generate_linked_list(6, 2), generate_linked_list(6, 3)),
-        (generate_linked_list(8, 2), generate_linked_list(6, 3)),
+        ((create_linked_list([1, 3, 5, 7]), create_linked_list([2, 4, 6, 8])), create_linked_list(list(range(1, 9)))),
     ]
     solutions = [SolutionRecursive]
 
     for case in cases:
-        print([node.val for node in iter_linked_list(case[0])])
-        print([node.val for node in iter_linked_list(case[1])])
         for solution in solutions:
-            result = solution().mergeTwoLists(case[0], case[1])
-            print(solution.__name__, [node.val for node in iter_linked_list(result)])
+            expect = [node.val for node in iter_linked_list(case[1])]
+            result = solution().mergeTwoLists(*case[0])
+            assert [node.val for node in iter_linked_list(result)] == expect
