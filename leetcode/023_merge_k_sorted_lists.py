@@ -1,6 +1,6 @@
 """Merge k Sorted Lists
 
-Merge k sorted linkd lists and return it as one sorted list. Analyze and describe its complexity.
+Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 
 Example:
     Input:
@@ -14,37 +14,18 @@ Example:
 
 Refer https://leetcode.com/problems/merge-k-sorted-lists/
 """
-import copy
 
+import heapq
+from typing import List
 
-def generate_linked_list(n, step):
-    assert n > 1
-    head = ListNode(1)
-    node = head
-    for i in range(2, n, step):
-        node.next = ListNode(i)
-        node = node.next
-    return head
+from utils.list import ListNode, create_linked_list
 
-
-def iter_linked_list(head):
-    node = head
-    while node is not None:
-        yield node
-        node = node.next
-
-
-class ListNode:
-
-    def __init__(self, x):
-        self.val = x
-        self.next = None
 
 
 class Solution:
     """迭代递归解法"""
 
-    def mergeTwoLists(self, l1, l2):
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode):
         if l1 is None:
             return l2
         if l2 is None:
@@ -57,7 +38,7 @@ class Solution:
             l2.next = self.mergeTwoLists(l1, l2.next)
             return l2
 
-    def mergeKLists(self, lists):
+    def mergeKLists(self, lists: List[ListNode]):
         """
         :type lists: List[ListNode]
         :rtype: ListNode
@@ -75,20 +56,20 @@ class Solution:
 class SolutionMergeRecursive:
     """归并递归解法"""
 
-    def mergeTwoLists(self, l1, l2):
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode):
         if l1 is None:
             return l2
         if l2 is None:
             return l1
 
-        if (l1.val < l2.val):
+        if l1.val < l2.val:
             l1.next = self.mergeTwoLists(l1.next, l2)
             return l1
         else:
             l2.next = self.mergeTwoLists(l1, l2.next)
             return l2
 
-    def mergeKLists(self, lists):
+    def mergeKLists(self, lists: List[ListNode]):
         """
         :type lists: List[ListNode]
         :rtype: ListNode
@@ -107,7 +88,7 @@ class SolutionSimple:
     """取值排序再拼接"""
 
     @staticmethod
-    def addToList(lists):
+    def addToList(lists: List[ListNode]):
         values = []
         for node in lists:
             current = node
@@ -136,23 +117,52 @@ class SolutionSimple:
         return head
 
 
+class SolutionBasedOnDeque:
+    """基于堆排序"""
+
+    @staticmethod
+    def addToList(lists: List[ListNode]):
+        h = []
+        for node in lists:
+            current = node
+            while current is not None:
+                heapq.heappush(h, current.val)
+                current = current.next
+        return [heapq.heappop(h) for i in range(len(h))]
+
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        values = self.addToList(lists)
+
+        head = None
+        current = None
+        for i in values:
+            if head is None:
+                head = ListNode(i)
+                current = head
+            else:
+                current.next = ListNode(i)
+                current = current.next
+        return head
+
 if __name__ == '__main__':
     cases = [
-        [generate_linked_list(3, 2),
-         generate_linked_list(6, 2),
-         generate_linked_list(6, 3)],
-        [generate_linked_list(7, 2),
-         generate_linked_list(8, 2),
-         generate_linked_list(6, 3)],
+        (
+            (
+                [1, 3, 5],
+                [2, 4, 8],
+                [6, 7],
+            ),
+            [1, 2, 3, 4, 5, 6, 7, 8]
+        )
     ]
 
-    solutions = [Solution, SolutionMergeRecursive, SolutionSimple]
+    solutions = [Solution(), SolutionMergeRecursive(), SolutionSimple(), SolutionBasedOnDeque()]
     for case in cases:
-        inputs = []
-        for node in case:
-            inputs.append('{}'.format([n.val for n in iter_linked_list(node)]))
-        print('Input:', ', '.join(inputs))
-        for solution in solutions:
-            result = solution().mergeKLists(copy.deepcopy(case))
-            print('{}: {}'.format(solution.__name__,
-                                  [node.val for node in iter_linked_list(result)]))
+        for ss in solutions:
+            lists = [create_linked_list(array) for array in case[0]]
+            result = ss.mergeKLists(lists)
+            assert [node.val for node in result] == case[1]
