@@ -14,43 +14,11 @@ Given n will always be valid.
 
 Refer https://leetcode.com/problems/remove-nth-node-from-end-of-list
 """
-
-
-def generate_linked_list(n):
-    assert n > 1
-    head = ListNode(n)
-    node = head
-    for i in range(n - 1, 0, -1):
-        next_node = ListNode(i)
-        node.next = next_node
-        next_node.prev = node
-        node = node.next
-    return head
-
-
-def check_exist(head, val):
-    while True:
-        if head.val == val:
-            return True
-        if head.next is not None:
-            head = head.next
-        else:
-            break
-    return False
-
-
-class ListNode:
-
-    def __init__(self, x):
-        self.val = x
-        self.next = None
-        self.prev = None
+from utils.list import ListNode, create_linked_list
 
 
 class Solution:
-    """ 单向链表只能遍历一次后才能知道其长度
-    """
-
+    """单向链表只能遍历一次后才能知道其长度"""
     def removeNthFromEnd(self, head, n):
         """
         :type head: ListNode
@@ -80,11 +48,35 @@ class Solution:
         return head
 
 
+class SolutionOnce:
+    """利用双指针遍历一次"""
+    def removeNthFromEnd(self, head: ListNode, n: int):
+        dummy_node = ListNode(-1)
+        dummy_node.next = head
+        node = self.find_from_end(dummy_node, n+1)
+        node.next = node.next.next
+        return dummy_node.next
+
+    def find_from_end(self, head: ListNode, n: int):
+        p1 = head
+        for i in range(n):
+            p1 = p1.next
+        p2 = head
+        while p1 is not None:
+            p2 = p2.next
+            p1 = p1.next
+        return p2
+
+
 if __name__ == '__main__':
-    cases = [(generate_linked_list(5), 5), (generate_linked_list(5), 6),
-             (generate_linked_list(5), 3)]
-    solutions = [Solution]
+    cases = [
+        (create_linked_list(list(range(5))), 4, 1),
+        (create_linked_list(list(range(5))), 1, 4),
+        (create_linked_list(list(range(5))), 5, 0),
+    ]
+    solutions = (Solution(), SolutionOnce())
 
     for case in cases:
-        for solution in solutions:
-            assert not check_exist(solution().removeNthFromEnd(case[0], case[1]), case[1])
+        for ss in solutions:
+            result = [node.val for node in ss.removeNthFromEnd(case[0], case[1])]
+            assert case[2] not in result
