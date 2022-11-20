@@ -1,5 +1,33 @@
+:root {
+    font-size: 0.75em;
+
+}
+
+@media (min-width: 800px) {
+    :root {
+        font-size: 0.875em;
+    }
+}
+
+@media (min-width: 1200px) {
+    :root {
+        font-size: 1em;
+    }
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.2;
+}
+
 h1 {
     color: #2f4f4f;
+    font-weight: blod;
+}
+
+
+.title {
+    font: 32px Helvetica, Arial, sans-serif;
 }
 
 .nav {
@@ -15,14 +43,77 @@ h1 {
 .nav a {
     color: white;
     background-color: #13a4a4;
-    padding: 5px;
+    padding: 5px 15px;
     border-radius: 2px;
     text-decoration: none;
 }
 
 .nav .featured {
     background-color: orange;
+    box-shadow: 10px 2px #6f9090;
 }
 
+/* a.featured {
+    background-color: orange;
+} */
+
+
+a:link {
+    color: blue;
+    text-decoration: none;
+}
+
+a:visited {
+    color: purple;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    color: red;
+}
+
+.footer {
+    color: #666;
+    background-color: #ccc;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.footer a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.panel {
+    font-size: 1rem;
+    padding: 1em;
+    border: 1px solid #999;
+    border-radius: 0.5em;
+}
+
+.panel.large {
+    font-size: 1.2rem;
+}
+
+.panel > h2 {
+    margin-top: 0;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.square {
+    width: 90vmin;
+    height: 90vmin;
+    background-color: #369;
+}
+
+.about-us {
+    font-size: 2em;
+}
 
 

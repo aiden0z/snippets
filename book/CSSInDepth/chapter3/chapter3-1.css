@@ -1,0 +1,80 @@
+/* 总是全局设置 border-box 以便得到预期的元素大小*/
+:root {
+    box-sizing: border-box;
+}
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #eee;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* 避免明确设置元素的高度，以免出现溢出问题。*/
+/* 如果外边距的行为很奇怪，就采取措施防止外边距折叠 */
+/* 使用猫头鹰选择器全局设置堆叠元素之间的外边距 */
+body * + * {
+    margin-top: 1.5em;
+}
+
+header {
+    padding: 1em 1.5em;
+    color: #fff;
+    background-color: #0072b0;
+    border-radius: 0.5em;
+}
+
+main {
+    /* fix IE bugs */
+    display: block;;
+}
+
+
+/* 使用现代布局技术，如 display: table 或 Flexbox实现列等高或垂直居中内容 */
+.container {
+    display:flex;
+    width: 100%;
+}
+
+.main {
+    /* 调整盒模型，修改为 border-box 后，70% 宽度将包含内容、内边距和变宽的大小总和。默认只是内容的宽度。 */
+    padding: 1em 1.5em;
+    width: 70%;
+    background-color: #fff;
+    border-radius: 0.5em;
+
+}
+
+.sidebar {
+
+    width: 30%;
+    padding: 1.5em;
+    margin-top: 0;
+    margin-left: 1.5em;
+    background-color: #fff;
+    border-radius: 0.5em;;
+}
+
+.button-link {
+    display: block;
+    padding: 0.5em;
+    color: #fff;
+    background-color: #0090c9;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.button-link + .button-link {
+    margin-top: 1.5em;
+}
+
+.sponsor-link {
+    display: block;
+    color:#0072b0;
+    font-weight: bold;
+    text-decoration: none;
+}
