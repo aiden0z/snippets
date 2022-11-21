@@ -1,0 +1,53 @@
+/* 总是全局设置 border-box 以便得到预期的元素大小*/
+:root {
+    box-sizing: border-box;
+}
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #eee;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* 避免明确设置元素的高度，以免出现溢出问题。 */
+/* 如果外边距的行为很奇怪，就采取措施防止外边距折叠 */
+/* 使用猫头鹰选择器全局设置堆叠元素之间的外边距 */
+body * + * {
+    margin-top: 1.5em;
+}
+
+header {
+    padding: 1em 1.5em;
+    color: #fff;
+    background-color: #0072b0;
+    border-radius: 0.5em;
+    margin-bottom: 1.5em;
+}
+
+.container {
+    /* 设置最大宽度为 1080px */
+    /* 注意这里使用的是 max-width，在小于 1080px 的视口中，内层容器依然能填满屏幕，不会出现滚动条*/
+    max-width: 1080px;;
+    /*左右边距设置为 auto，能够让内层容器自动填充可用空间，从而实现水平居中的效果。 */
+    margin: 0 auto;
+}
+
+
+.main {
+    padding: 0 1.5em;
+    background-color: #fff;
+    border-radius: 0.5em;
+
+}
+
+.media {
+    float: left;
+    width: 50%;
+    padding: 1.5em;
+    background-color: #eee;
+    border-radius: 0.5em;
+}
